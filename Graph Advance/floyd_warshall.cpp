@@ -16,16 +16,15 @@ vector<vector<int>> floyd_warshall(vector<vector<int>> &adj_mat, vector<vector<i
 
     for (int i = 0; i < v; i++)
         for (int j = 0; j < v; j++)
-            if (adj_mat[i][j] != -1)
-            {
-                dist[i][j] = adj_mat[i][j];
+        {
+            dist[i][j] = adj_mat[i][j];
+
+            if (dist[i][j] != infinity)
                 inter[i][j] = i;
-            }
+        }
 
     for (int i = 0; i < v; i++)
-    {
         dist[i][i] = 0;
-    }
 
     for (int k = 0; k < v; k++)
         for (int i = 0; i < v; i++)
@@ -73,7 +72,7 @@ int main()
     int v, e;
     cin >> v >> e;
 
-    vector<vector<int>> adj_mat(v, vector<int>(v, -1));
+    vector<vector<int>> adj_mat(v, vector<int>(v, infinity));
 
     for (int i = 0; i < e; i++)
     {
@@ -87,18 +86,18 @@ int main()
 
     vector<vector<int>> dist = floyd_warshall(adj_mat, inter);
 
-    // for (auto r : dist)
-    // {
-    //     for (auto e : r)
-    //         cout << e << ' ';
-    //     cout << nl;
-    // }
+    for (auto r : dist)
+    {
+        for (auto e : r)
+            cout << e << ' ';
+        cout << nl;
+    }
 
-    vector<int> path = getPath(4, 4, inter);
+    // vector<int> path = getPath(4, 4, inter);
 
-    for (auto e : path)
-        cout << e << ' ';
-    cout << nl;
+    // for (auto e : path)
+    //     cout << e << ' ';
+    // cout << nl;
 
     return 0;
 }
