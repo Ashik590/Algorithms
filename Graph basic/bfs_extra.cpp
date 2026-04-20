@@ -57,7 +57,6 @@ void BFS(vector<Node> &nodes, int st)
 
 int main()
 {
-
     int n, m;
     cin >> n;
     cin >> m;
